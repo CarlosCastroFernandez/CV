@@ -82,6 +82,7 @@ function descargar(){
     const link = document.createElement('a');
     link.href = url;
     link.download = 'CV.pdf';
+    link.target= '_blank';
     
     // Simular un clic en el enlace
     document.body.appendChild(link);
