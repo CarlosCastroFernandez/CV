@@ -77,16 +77,30 @@ for (const id in valoresIniciales) {
 
 function descargar(){
     const url = './CV.pdf';
+    
             
     // Crear un enlace temporal
     const link = document.createElement('a');
-    link.href = url;
-    link.download = 'CV.pdf';
-    link.target= '_blank';
-    
-    // Simular un clic en el enlace
-    document.body.appendChild(link);
-    link.click();
+
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+    if (isIOS) {
+        // Mostrar instrucciones para iOS o cambiar el comportamiento
+        alert("Por favor, toque y mantenga presionado el Botón Descargar CV y selecciona 'Descargar archivo enlazado' para descargar el archivo.");
+        const link = document.createElement('a');
+        link.href = url;
+        link.innerHTML = "Descargar CV";
+        document.body.appendChild(link);
+    }else{
+        link.href = url;
+        link.download = 'CV.pdf';
+        link.target= '_blank';
+        
+        // Simular un clic en el enlace
+        document.body.appendChild(link);
+        link.click();
+
+    }
     
     // Eliminar el enlace temporal del DOM
     document.body.removeChild(link);
