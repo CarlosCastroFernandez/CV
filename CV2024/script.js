@@ -86,10 +86,12 @@ function descargar(){
 
     if (isIOS) {
         // Mostrar instrucciones para iOS o cambiar el comportamiento
-        alert("Por favor, toque y mantenga presionado el Botón Descargar CV y selecciona 'Descargar archivo enlazado' para descargar el archivo.");
-        const link = document.createElement('a');
+        alert("Por favor, toque el enlace abajo para abrir y luego descargue el CV desde su navegador.");
         link.href = url;
-        link.innerHTML = "Descargar CV";
+        link.innerText = "Descargar CV";
+        link.style.display = "block"; // Asegura que el enlace es claramente visible y accesible
+        link.style.marginTop = "20px"; // Espacio para mejor accesibilidad
+        link.target = '_blank'; // Abrir en una nueva pestaña
         document.body.appendChild(link);
     }else{
         link.href = url;
@@ -103,6 +105,8 @@ function descargar(){
     }
     
     // Eliminar el enlace temporal del DOM
-    document.body.removeChild(link);
+    setTimeout(() => {
+        document.body.removeChild(link);
+    }, 100);
 }
 
